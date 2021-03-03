@@ -1,14 +1,14 @@
-import React from "react"
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../styles/theme';
-import {GlobalStyle} from '../styles/global';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app'
+import { GlobalStyle } from '../styles/global';
+import { ThemesProvider } from '../contexts/theme';
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ThemeProvider>
-);
-
-export default MyApp;
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <ThemesProvider>
+        <GlobalStyle />
+        <Component {...pageProps}/>
+      </ThemesProvider>
+    </>
+  )
+}
